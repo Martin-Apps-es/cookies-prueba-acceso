@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Visitantes</title>
+</head>
+<body>
+  <h1>Bienvenido a mi página</h1>
+  <script>
+    async function registrarVisita() {
+      // Obtener sistema operativo
+      const os = navigator.userAgent;
+
+      // Obtener ubicación aproximada e IP
+      const ipResponse = await fetch("https://api.ipify.org?format=json");
+      const { ip } = await ipResponse.json();
+      const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+      const { city, region, country } = await locationResponse.json();
+      
+      // Construir los datos
+      const data = {
+        os: os,
+        ip: ip,
+        location: `${city}, ${region}, ${country}`
+      };
+      
+      // Enviar los datos a Apps Script
+      const scriptURL = "https://script.google.com/macros/s/AKfycbx9MQCBiFsQfHGEGiS0TLNXkjMOk6bvocw7bpJVAkasNhXtdYNRIkp28SI_9lJUYSp5/exec";
+      await fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+    }
+    
+    // Llamar a la función al cargar la página
+    registrarVisita();
+  </script>
+</body>
+</html>
