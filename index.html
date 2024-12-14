@@ -6,12 +6,12 @@
   <title>Registro de Visitantes</title>
 </head>
 <body>
-  <h1>Bienvenido a mi página v3</h1>
+  <h1>Bienvenido a mi página</h1>
   <script>
     async function registrarVisita() {
       try {
         console.log("Iniciando registro...");
-        
+
         // Obtener sistema operativo
         const os = navigator.userAgent;
         console.log("Sistema operativo:", os);
@@ -29,15 +29,15 @@
         // Construir los datos
         const data = { os, ip, location };
 
-        // URL de Apps Script
-        const scriptURL = "https://script.google.com/macros/s/AKfycbx9MQCBiFsQfHGEGiS0TLNXkjMOk6bvocw7bpJVAkasNhXtdYNRIkp28SI_9lJUYSp5/exec";
+        // URL de Apps Script (copia tu URL de Apps Script aquí)
+        const scriptURL = "https://script.google.com/macros/s/AKfycbw4z9d5YdBeVzqskZNpnT4jexHzIZwHyGamDWY-On-kxwK92rriDN8YU6GJI50xUqyT/exec";
 
         // Enviar datos a Apps Script
         const response = await fetch(scriptURL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-          mode: "cors",
+          body: JSON.stringify(data),
+          mode: "cors", // Soluciona el problema de CORS
         });
 
         console.log("Respuesta del servidor:", await response.text());
