@@ -6,7 +6,7 @@
   <title>Registro de Visitantes</title>
 </head>
 <body>
-  <h1>Bienvenido a mi página v2</h1>
+  <h1>Bienvenido a mi página v3</h1>
   <script>
     async function registrarVisita() {
       try {
@@ -37,6 +37,7 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
+          mode: "cors",
         });
 
         console.log("Respuesta del servidor:", await response.text());
